@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from gunicorn.app.base import BaseApplication
 import paho.mqtt.client as mqtt
 import time
 
@@ -85,6 +86,18 @@ def calcular_media(year, month, day, hour):
             'solo': 0.0,
         }
 
+def __init__(self, app, options=None):
+        self.options = options or {}
+        self.application = app
+        super().__init__()
+
+    def load_config(self):
+        for key, value in self.options.items():
+            self.cfg.set(key, value)
+
+    def load(self):
+        return self.application
+
 @app.route("/")
 def index():
     current_year = int(time.strftime("%Y", time.localtime(time.time())))
@@ -103,4 +116,9 @@ def index():
     return render_template("index.html", medias_por_hora=medias_por_hora)
 
 if __name__ == "__main__":
-    app.run(port=8000)
+    options = {
+        'bind': '0.0.0.0:8000',  # Escolha a porta que deseja usar
+        'workers': 4,  # Número de processos de trabalho
+    }
+
+    StandaloneApplication(app, options).run()
