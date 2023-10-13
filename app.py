@@ -103,4 +103,4 @@ def index():
     return render_template("index.html", medias_por_hora=medias_por_hora)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
