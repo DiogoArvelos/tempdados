@@ -120,8 +120,9 @@ if __name__ == "__main__":
     options = {
         'bind': '0.0.0.0:8000',  # Escolha a porta que deseja usar
         'workers': 4,  # Número de processos de trabalho
-        'worker_class': 'gevent',  # Use gevent como o worker_class
+        'worker_class': 'sync',  # Use o worker sync
         'timeout': 120  # Defina um tempo limite suficientemente grande
     }
 
     StandaloneApplication(app, options).run()
+
