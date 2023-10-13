@@ -86,7 +86,8 @@ def calcular_media(year, month, day, hour):
             'solo': 0.0,
         }
 
-def __init__(self, app, options=None):
+class StandaloneApplication(BaseApplication):
+    def __init__(self, app, options=None):
         self.options = options or {}
         self.application = app
         super().__init__()
