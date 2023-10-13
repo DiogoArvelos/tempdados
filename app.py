@@ -121,7 +121,8 @@ if __name__ == "__main__":
         'bind': '0.0.0.0:8000',  # Escolha a porta que deseja usar
         'workers': 4,  # Número de processos de trabalho
         'worker_class': 'sync',  # Use o worker sync
-        'timeout': 120  # Defina um tempo limite suficientemente grande
+        'timeout': 120,  # Defina um tempo limite suficientemente grande
+        'reload': True,  # Use o reload para recarregar o aplicativo automaticamente
     }
 
     StandaloneApplication(app, options).run()
